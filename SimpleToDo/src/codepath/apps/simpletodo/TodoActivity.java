@@ -20,12 +20,14 @@ public class TodoActivity extends Activity {
 	private ArrayList<String> items;
 	private ArrayAdapter<String> itemsAdapter;
 	private ListView lvItems;
+	private EditText etNewItem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo);
 		lvItems = (ListView) findViewById(R.id.lvItems);
+		etNewItem = (EditText) findViewById(R.id.etNewItem);
 		items = new ArrayList<String>();
 		items.add("First Item");
 		items.add("Second Item");
@@ -38,8 +40,6 @@ public class TodoActivity extends Activity {
 	}
 
 	public void addTodoItem(View v) {
-		EditText etNewItem = (EditText)
-				findViewById(R.id.etNewItem);
 		itemsAdapter.add(etNewItem.getText().toString());
 		etNewItem.setText("");
 	}

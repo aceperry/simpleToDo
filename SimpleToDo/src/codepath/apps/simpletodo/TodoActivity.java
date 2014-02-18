@@ -3,7 +3,7 @@ package codepath.apps.simpletodo;
 import codepath.apps.simpletodo.R;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
@@ -35,13 +35,6 @@ public class TodoActivity extends Activity {
 		setupListViewListener();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.todo, menu);
-		return true;
-	}
-	
 	public void addTodoItem(View v) {
 		EditText etNewItem = (EditText)
 				findViewById(R.id.etNewItem);
@@ -52,8 +45,8 @@ public class TodoActivity extends Activity {
 	private void setupListViewListener() {
 		lvItems.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
-			public boolean onItemLongClick(AdapterView<?> aView,
-					View item, int pos, long id) {
+			public boolean onItemLongClick(AdapterView<?> aView, View item,
+					int pos, long id) {
 				items.remove(pos);
 				itemsAdapter.notifyDataSetInvalidated();
 				return true;
@@ -65,7 +58,7 @@ public class TodoActivity extends Activity {
 		File filesDir = getFilesDir();
 		File todoFile = new File(filesDir, "todo.txt");
 		try {
-			items = new ArrayList<String>(FileUtils.readlines(todoFile));
+			items = new ArrayList<String>(FileUtils.readLines(todoFile));
 		} catch (IOException e) {
 			items = new ArrayList<String>();
 			e.printStackTrace();

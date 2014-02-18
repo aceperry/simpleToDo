@@ -29,6 +29,8 @@ public class TodoActivity extends Activity {
 		items = new ArrayList<String>();
 		items.add("First Item");
 		items.add("Second Item");
+		items.add("Third Item");
+		items.add("Fourth Item");
 		itemsAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, items);
 		lvItems.setAdapter(itemsAdapter);

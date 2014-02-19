@@ -28,11 +28,13 @@ public class TodoActivity extends Activity {
 		setContentView(R.layout.activity_todo);
 		lvItems = (ListView) findViewById(R.id.lvItems);
 		etNewItem = (EditText) findViewById(R.id.etNewItem);
-		items = new ArrayList<String>();
-		items.add("First Item");
-		items.add("Second Item");
-		items.add("Third Item");
-		items.add("Fourth Item");
+		readItems();
+		/* Old code snippet to populate ArrayList */
+//		items = new ArrayList<String>();
+//		items.add("First Item");
+//		items.add("Second Item");
+//		items.add("Third Item");
+//		items.add("Fourth Item");
 		itemsAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, items);
 		lvItems.setAdapter(itemsAdapter);
@@ -42,6 +44,7 @@ public class TodoActivity extends Activity {
 	public void addTodoItem(View v) {
 		itemsAdapter.add(etNewItem.getText().toString());
 		etNewItem.setText("");
+		saveItems();
 	}
 	
 	private void setupListViewListener() {
@@ -50,7 +53,8 @@ public class TodoActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> aView, View item,
 					int pos, long id) {
 				items.remove(pos);
-				itemsAdapter.notifyDataSetInvalidated();
+				itemsAdapter.notifyDataSetChanged();
+				saveItems();
 				return true;
 			}
 		});
@@ -63,7 +67,6 @@ public class TodoActivity extends Activity {
 			items = new ArrayList<String>(FileUtils.readLines(todoFile));
 		} catch (IOException e) {
 			items = new ArrayList<String>();
-			e.printStackTrace();
 		}
 	}
 	

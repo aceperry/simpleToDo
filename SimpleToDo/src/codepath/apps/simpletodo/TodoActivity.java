@@ -30,12 +30,6 @@ public class TodoActivity extends Activity {
 		lvItems = (ListView) findViewById(R.id.lvItems);
 		etNewItem = (EditText) findViewById(R.id.etNewItem);
 		readItems();
-		/* Old code snippet to populate ArrayList */
-//		items = new ArrayList<String>();
-//		items.add("First Item");
-//		items.add("Second Item");
-//		items.add("Third Item");
-//		items.add("Fourth Item");
 		itemsAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, items);
 		lvItems.setAdapter(itemsAdapter);
@@ -64,7 +58,7 @@ public class TodoActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
+				Intent eiIntent = new Intent(TodoActivity.this, EditItemActivity.class);
 				
 			}
 
